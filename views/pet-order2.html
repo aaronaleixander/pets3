@@ -13,6 +13,20 @@
         What would you like your pets name to be?
         <input type="text" name="name" id="name">
     </label><br>
+
+    <h1>Size:</h1>
+    <repeat group="{{@sizes}}" value="{{@petSize}}">
+        <input type="radio" id="size" name="size" value="{{@petSize}}">
+        <label for="size">{{@petSize}}</label>
+    </repeat>
+
+    <h1>Accessories:</h1>
+    <repeat group="{{@accessories}}" value="{{@petAccessories}}">
+        <input type="checkbox" id="accs" name="accs[]" value="{{@petAccessories}}">
+            {{@petAccessories}} <br>
+        </input>
+    </repeat>
+
     <input type="submit" value="Submit Order">
 </form>
 </body>

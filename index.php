@@ -45,13 +45,19 @@ $f3->route('GET /order', function ($f3) {
 });
 
 //order2 page
-$f3->route('POST /order2', function () {
+$f3->route('POST /order2', function ($f3) {
     if(isset($_POST['type'])){
         $_SESSION['type'] = $_POST['type'];
     }
 
-
     $_SESSION['colors'] = $_POST['colors'];
+
+    // fat free hive data
+    $sizes = getSizes();
+    $f3->set('sizes', $sizes);
+
+    $accessories = getAccessories();
+    $f3->set('accessories', $accessories);
 
     $view = new Template();
     echo $view->render('views/pet-order2.html');
