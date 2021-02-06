@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pet Order</title>
+</head>
+<body>
+    <form action="order2" method="post">
+        <h3>Order a Pet</h3>
+        <label for="type">
+            What kind of pet would you like to order?
+            <input type="text" name="type" id="type">
+        </label>
+        <br>
+        <label for="colors">
+            Select a color
+            <select name="colors" id="colors">
+                <option value="purple">Purple</option>
+                <option value="black">Black</option>
+                <option value="white">White</option>
+                <option value="green">Green</option>
+            </select>
+        </label>
+        <br>
+        <input type="submit" value="Place Order">
+    </form>
+</body>
+</html>
