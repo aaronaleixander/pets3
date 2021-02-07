@@ -17,13 +17,14 @@
         <br>
         <label for="color">
             Select a color
-            <select name="color" id="color">
+        </label>
+            <select class="form-control" name="color" id="color">
                 <option>--Select a color--</option>
                 <repeat group="{{@colors}}" value="{{@colorOption}}">
                     <option>{{@colorOption}}</option>
                 </repeat>
             </select>
-        </label>
+
         <br>
         <input type="submit" value="Place Order">
     </form>

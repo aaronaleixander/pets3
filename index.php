@@ -26,7 +26,7 @@ $f3->route('GET /', function () {
 });
 
 //order1 page
-$f3->route('GET /order', function ($f3) {
+$f3->route('GET|POST /order', function ($f3) {
     // Check if the form has been posted
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
         // validate
@@ -37,8 +37,7 @@ $f3->route('GET /order', function ($f3) {
         }
     }
 
-    $colors = getColors();
-    $f3->set('colors', $colors);
+    $f3->set('colors', getColors());
 
     $view = new Template();
     echo $view->render('views/pet-order.html');
@@ -50,14 +49,14 @@ $f3->route('POST /order2', function ($f3) {
         $_SESSION['type'] = $_POST['type'];
     }
 
-    $_SESSION['colors'] = $_POST['colors'];
+    if(isset($_POST['color'])){
+        $_SESSION['color'] = $_POST['color'];
+    }
+
 
     // fat free hive data
-    $sizes = getSizes();
-    $f3->set('sizes', $sizes);
-
-    $accessories = getAccessories();
-    $f3->set('accessories', $accessories);
+    $f3->set('sizes', getSizes());
+    $f3->set('accessories', getAccessories());
 
     $view = new Template();
     echo $view->render('views/pet-order2.html');
@@ -65,13 +64,17 @@ $f3->route('POST /order2', function ($f3) {
 
 //summary page
 $f3->route('POST /summary', function () {
+    //var_dump($_POST);
 
     if(isset($_POST['name'])){
         $_SESSION['name'] = $_POST['name'];
     }
 
-    $view = new Template();
-    echo $view->render('views/order-summary.html');
+    $_SESSION['size'] = $_POST['size'];
+    $_SESSION['accessories'] = implode(', ', $_POST['accessories']);
+
+    $template = new Template();
+    echo $template->render('views/order-summary.html');
 });
 
 $f3->run();
